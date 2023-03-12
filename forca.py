@@ -3,6 +3,18 @@ def jogar():
     print("seja bem vindo ao jogo da forca")
     print("-------------------------------------")
 
+
+    arquivo = open("palavras.txt", "r")
+    palavras = []
+
+    for linha in arquivo:
+        linha = linha.strip()
+        palavras.append(linha)
+
+    arquivo.close()
+
+    print(palavras)
+
     palavraSecreta = "Potato".upper()
     letrasAcertadas = ["-" for letra in palavraSecreta]
 
