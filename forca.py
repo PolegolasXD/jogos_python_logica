@@ -1,52 +1,145 @@
 import random
 
+
 def jogar():
-    
     imprimeMensagemAbertura()
-    palavraSecreta = lendoArquivo()
-    letrasAcertadas = inicializaLetraAcertada(palavraSecreta)
+    palavraSecreta = carregaPalavraSecreta()
+
+    letrasAcertadas = inicializaLetrasAcertadas(palavraSecreta)
+    print(letrasAcertadas)
 
     enforcou = False
     acertou = False
-    tentativas = 0
-
-    print("\n", letrasAcertadas, "\n")
+    erros = 0
 
     while(not enforcou and not acertou):
 
-        chute = input("Escolha uma letra: ")
-        chute = chute.strip().upper()
+        chute = chamaChute()
 
         if(chute in palavraSecreta):
-            index = 0
-
-            for letra in palavraSecreta:
-                if(chute == letra):
-                    letrasAcertadas[index] = letra
-                index += 1
+            marcaLetraCorretaDoChuteCerto(chute, letrasAcertadas, palavraSecreta)
         else:
-            tentativas += 1
+            erros += 1
+            desenhaForca(erros)
 
-        enforcou = tentativas == 6
+        enforcou = erros == 7
+        acertou = "_" not in letrasAcertadas
 
-        acertou = "-" not in letrasAcertadas
-        print("\n", letrasAcertadas, "\n")
-
+        print(letrasAcertadas)
 
     if(acertou):
-        print("\nvocê ganhou!\n")
+        imprimeMensagemVencedor()
     else:
-        print("você perdeu!\n")
+        imprimeMensagemPerdedor(palavraSecreta)
 
-    print("fim de jogo")
 
+def desenhaForca(erros):
+    print("  _______     ")
+    print(" |/      |    ")
+
+    if(erros == 1):
+        print (" |      (_)   ")
+        print (" |            ")
+        print (" |            ")
+        print (" |            ")
+
+    if(erros == 2):
+        print (" |      (_)   ")
+        print (" |      \     ")
+        print (" |            ")
+        print (" |            ")
+
+    if(erros == 3):
+        print (" |      (_)   ")
+        print (" |      \|    ")
+        print (" |            ")
+        print (" |            ")
+
+    if(erros == 4):
+        print (" |      (_)   ")
+        print (" |      \|/   ")
+        print (" |            ")
+        print (" |            ")
+
+    if(erros == 5):
+        print (" |      (_)   ")
+        print (" |      \|/   ")
+        print (" |       |    ")
+        print (" |            ")
+
+    if(erros == 6):
+        print (" |      (_)   ")
+        print (" |      \|/   ")
+        print (" |       |    ")
+        print (" |      /     ")
+
+    if (erros == 7):
+        print (" |      (_)   ")
+        print (" |      \|/   ")
+        print (" |       |    ")
+        print (" |      / \   ")
+
+    print(" |            ")
+    print("_|___         ")
+    print()
+
+
+
+def imprimeMensagemVencedor():
+    print("Parabéns, você ganhou!")
+    print("       ___________      ")
+    print("      '._==_==_=_.'     ")
+    print("      .-\\:      /-.    ")
+    print("     | (|:.     |) |    ")
+    print("      '-|:.     |-'     ")
+    print("        \\::.    /      ")
+    print("         '::. .'        ")
+    print("           ) (          ")
+    print("         _.' '._        ")
+    print("        '-------'       ")
+
+
+def imprimeMensagemPerdedor(palavraSecreta):
+    print("Puxa, você foi enforcado!")
+    print("A palavra era {}".format(palavraSecreta))
+    print("    _______________         ")
+    print("   /               \       ")
+    print("  /                 \      ")
+    print("//                   \/\  ")
+    print("\|   XXXX     XXXX   | /   ")
+    print(" |   XXXX     XXXX   |/     ")
+    print(" |   XXX       XXX   |      ")
+    print(" |                   |      ")
+    print(" \__      XXX      __/     ")
+    print("   |\     XXX     /|       ")
+    print("   | |           | |        ")
+    print("   | I I I I I I I |        ")
+    print("   |  I I I I I I  |        ")
+    print("   \_             _/       ")
+    print("     \_         _/         ")
+    print("       \_______/           ")
+
+def marcaLetraCorretaDoChuteCerto(chute, letrasAcertadas, palavraSecreta):
+    index = 0
+    for letra in palavraSecreta:
+        if (chute == letra):
+            letrasAcertadas[index] = letra
+        index += 1
+
+def chamaChute():
+    chute = input("Qual letra? ")
+    chute = chute.strip().upper()
+    return chute
+
+def inicializaLetrasAcertadas(palavra):
+    return ["_" for letra in palavra]
 
 def imprimeMensagemAbertura():
-    print("-------------------------------------")
-    print("seja bem vindo ao jogo da forca")
-    print("-------------------------------------")
-    
-def lendoArquivo():
+    print("*********************************")
+    print("***Bem vindo ao jogo da Forca!***")
+    print("*********************************")
+
+def carregaPalavraSecreta():
     arquivo = open("palavras.txt", "r")
     palavras = []
 
@@ -56,14 +149,10 @@ def lendoArquivo():
 
     arquivo.close()
 
-    numeroIndicePalavra = random.randrange(0, len(palavras))
-    palavraSecreta = palavras[numeroIndicePalavra].upper()
+    numero = random.randrange(0, len(palavras))
+    palavraSecreta = palavras[numero].upper()
     return palavraSecreta
 
-def inicializaLetraAcertada(palavra):
-    return ["-" for letra in palavra]
 
-    
 if(__name__ == "__main__"):
     jogar()
-
