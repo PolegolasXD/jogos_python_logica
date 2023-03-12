@@ -127,7 +127,7 @@ def marcaLetraCorretaDoChuteCerto(chute, letrasAcertadas, palavraSecreta):
         index += 1
 
 def chamaChute():
-    chute = input("Qual letra? ")
+    chute = input("\nQual letra? ")
     chute = chute.strip().upper()
     return chute
 
@@ -135,9 +135,9 @@ def inicializaLetrasAcertadas(palavra):
     return ["_" for letra in palavra]
 
 def imprimeMensagemAbertura():
-    print("*********************************")
-    print("***Bem vindo ao jogo da Forca!***")
-    print("*********************************")
+    print("----------------------------------")
+    print("---Bem vindo ao jogo da Forca!---")
+    print("----------------------------------")
 
 def carregaPalavraSecreta():
     arquivo = open("palavras.txt", "r")

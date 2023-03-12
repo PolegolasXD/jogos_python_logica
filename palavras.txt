@@ -21,3 +21,14 @@ pessego
 pera
 roma
 tangerina
+amor
+carro
+cadeira
+janela
+porta
+alicate
+tesoura
+caneca
+celular
+monitor
+televisao
