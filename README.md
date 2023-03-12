@@ -13,7 +13,7 @@ criando um arquivo principal "jogos" onde pode acessar os dois jogos e escolher 
 
 tambem temos laços de repetiçoes como white e for, cada com com suas funções 
 
-curso de iniciante em python do alura, que inclusive adorei participar, e colocar os resultados aqui, espero que se divirtam\n\n
+curso de iniciante em python do alura, que inclusive adorei participar, e colocar os resultados aqui, espero que se divirtam
 
 Para rodar os jogos é necessario python3 no computador
 
