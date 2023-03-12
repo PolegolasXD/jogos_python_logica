@@ -1,3 +1,5 @@
+import random
+
 def jogar():
     print("-------------------------------------")
     print("seja bem vindo ao jogo da forca")
@@ -13,9 +15,9 @@ def jogar():
 
     arquivo.close()
 
-    print(palavras)
+    numeroIndicePalavra = random.randrange(0, len(palavras))
+    palavraSecreta = palavras[numeroIndicePalavra].upper()
 
-    palavraSecreta = "Potato".upper()
     letrasAcertadas = ["-" for letra in palavraSecreta]
 
     enforcou = False
