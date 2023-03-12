@@ -1,10 +1,10 @@
 def jogar():
     print("-------------------------------------")
     print("seja bem vindo ao jogo da forca")
-    print("-------------------------------------\n")
+    print("-------------------------------------")
 
-    palavraSecreta = "batata".upper()
-    letrasAcertadas = ["-", "-", "-", "-", "-", "-"]
+    palavraSecreta = "Potato".upper()
+    letrasAcertadas = ["-" for letra in palavraSecreta]
 
     enforcou = False
     acertou = False
